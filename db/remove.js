@@ -12,7 +12,7 @@ const remove = async (id) => {
             throw new Error(`Contact with id=${id} not found`);
         };
 
-        const newContactsList = contacts.filter(contact => contact.id !== id);
+        const newContactsList = contacts.filter(contact => contact.id.toString() !== id);
         updateContactsList(newContactsList);
         
         return contacts[index];

@@ -1,7 +1,7 @@
 const { program } = require('commander');
 
-// const contactsOperations = require('./contacts');
-const contactsOperations = require('./db');
+const contactsOperations = require('./contacts');
+// const contactsOperations = require('./db');
 
 program
   .option('-a, --action <type>', 'choose action')
@@ -18,37 +18,31 @@ function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
       case 'list':
           (async () => {
-              const contactsList = await contactsOperations.getAll();
-              console.log(contactsList);
+              await contactsOperations.listContacts();
           })();
       break;
 
       case 'get':
-        (async () => {
-            try {
-                const findContact = await contactsOperations.getById(id);
-                console.log(findContact);
-            } catch (error) {
-                throw error;
-            }
-        })();
+          (async () => {
+              id
+                  ? await contactsOperations.getContactById(id)
+                  : console.log('ID is not specified');
+          })();
       break;
 
       case 'add':
           (async () => {
-              const addContact = await contactsOperations.add(name, email, phone);
-              console.log(addContact);
+              name && email && phone
+                  ? await contactsOperations.addContact(name, email, phone)
+                  : console.log('Please, entry full data (name, email, phone)');
           })();
       break;
 
       case 'remove':
-        (async () => {
-            try {
-                const removeContact = await contactsOperations.remove(id);
-                console.log(removeContact);
-            } catch (error) {
-                throw error;
-            }
+          (async () => {
+              id
+                  ? await contactsOperations.removeContact(id)
+                  : console.log('ID is not specified');
         })();
       break;
 
