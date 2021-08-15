@@ -1,7 +1,6 @@
 const { program } = require('commander');
 
 const contactsOperations = require('./contacts');
-// const contactsOperations = require('./db');
 
 program
     .option('-a, --action <type>', 'choose action')
@@ -27,11 +26,9 @@ function invokeAction({ action, id, name, email, phone }) {
             break;
 
         case 'add':
- 
-                name && email && phone
-                    ? contactsOperations.addContact(name, email, phone)
-                    : console.log('Please, entry full data (name, email, phone)');
-          
+            name && email && phone
+                ? contactsOperations.addContact(name, email, phone)
+                : console.log('Please, entry full data (name, email, phone)');
             break;
 
         case 'remove':
