@@ -7,8 +7,7 @@ const updateContactsList = require('./updateContactsList');
 const remove = async (id) => {
     try {
         const contacts = await getAll();
-        const index = contacts.findIndex(contact => contact.id === id);
-
+        const index = contacts.findIndex(contact => contact.id.toString() === id);
         if (index === -1) {
             throw new Error(`Contact with id=${id} not found`);
         };

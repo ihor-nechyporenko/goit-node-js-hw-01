@@ -1,10 +1,5 @@
-//  Раскомментируй и запиши значение
-//  const contactsPath = ;
-
 const contactsOperations = require('./db');
 
-
-// TODO: задокументировать каждую функцию
 async function listContacts() {
   try {
     const contacts = await contactsOperations.getAll();
@@ -47,7 +42,7 @@ async function removeContact(contactId) {
   }
 };
 
-// removeContact(9);
+// removeContact(3);
 
 async function addContact(name, email, phone) {
   try {
